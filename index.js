@@ -62,7 +62,7 @@ client.on("interactionCreate", async (interaction) => {
 				servers = config.servers;
 				let reply = "```\n";
 				for (let i = 0; i < servers.length; i++) {
-					await exec(`net stop ${servers[i].value}`, (error, stdout, stderr) => {
+					await exec(`net stop ${servers[i].value}`, async (error, stdout, stderr) => {
 						reply += `Successfully stopped ${servers[i].value}.\n`;
 						interaction.editReply({
 							content: reply,
