@@ -49,7 +49,7 @@ client.on("interactionCreate", async (interaction) => {
 	if (!interaction.isCommand()) return;
 	switch (interaction.commandName) {
 		case "restart":
-			interaction.deferReply();
+			interaction.deferReply({ ephemeral: true });
 			let server = interaction.options.getString("server");
 			exec(`net stop ${server}`, (error, stdout, stderr) => {
 				if (error) return interaction.editReply({ content: `An error occured: ${error.message}`, ephemeral: true });
