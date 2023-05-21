@@ -52,13 +52,13 @@ client.on("interactionCreate", async (interaction) => {
 			interaction.deferReply();
 			let server = interaction.options.getString("server");
 			exec(`net stop ${server}`, (error, stdout, stderr) => {
-				if (error) return interaction.editReply(`An error occured: ${error.message}`);
-				if (stderr) return interaction.editReply(`An error occured: ${stderr}`);
-				interaction.editReply(`Successfully stopped ${server}.`);
+				if (error) return interaction.editReply({ content: `An error occured: ${error.message}`, ephemeral: true });
+				if (stderr) return interaction.editReply({ content: `An error occured: ${stderr}`, ephemeral: true });
+				interaction.editReply({ content: `Successfully stopped ${server}.`, ephemeral: true });
 				exec(`net start ${server}`, (error, stdout, stderr) => {
-					if (error) return interaction.editReply(`An error occured: ${error.message}`);
-					if (stderr) return interaction.editReply(`An error occured: ${stderr}`);
-					interaction.editReply(`Successfully started ${server}.`);
+					if (error) return interaction.editReply({ content: `An error occured: ${error.message}`, ephemeral: true});
+					if (stderr) return interaction.editReply({ content: `An error occured: ${stderr}`, ephemeral: true});
+					interaction.editReply({ content: `Successfully started ${server}.`, ephemeral: true});
 				});
 			});
 			break;
