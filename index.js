@@ -25,23 +25,28 @@ client.on("ready", async () => {
 				// Register commands
 				await rest.put(
 					Discord.Routes.applicationGuildCommands(client.user.id, guild.id), {
-						body: [{
-							name: "restart",
-							description: "Restarts a server.",
-							type: 1,
-							default_member_permissions: 0,
-							options: [{
-								name: "server",
-								description: "The server to restart.",
-								type: 3,
-								required: true,
-								choices: config.servers
-							}]
-						}]
+						body: []
 					},
 				);
 				console.log(`${colors.cyan("[INFO]")} Successfully registered commands for ${colors.green(guild.name)}. Took ${colors.green((Date.now() - gStart) / 1000)} seconds.`);
 			};
+			await rest.put(
+				Discord.Routes.applicationCommands(client.user.id), {
+					body: [{
+						name: "restart",
+						description: "Restarts a server.",
+						type: 1,
+						default_member_permissions: 0,
+						options: [{
+							name: "server",
+							description: "The server to restart.",
+							type: 3,
+							required: true,
+							choices: config.servers
+						}]
+					}]
+				},
+			);
 			console.log(`${colors.cyan("[INFO]")} Successfully registered commands. Took ${colors.green((Date.now() - start) / 1000)} seconds.`);
 		} catch (error) {
 			console.error(error);
