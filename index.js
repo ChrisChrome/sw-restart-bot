@@ -17,10 +17,11 @@ client.on("ready", async () => {
 	await (async () => {
 		try {
 			let serverList = config.servers;
+			// Add `all` option without overwriting the config
 			serverList.push({
 				name: "all",
 				value: "all"
-			})
+			});
 			console.log(`${colors.cyan("[INFO]")} Registering Commands...`)
 			let start = Date.now()
 			await rest.put(
@@ -40,6 +41,7 @@ client.on("ready", async () => {
 					}]
 				},
 			);
+			serverList.pop(); // Why do you work like this javascript...
 			console.log(`${colors.cyan("[INFO]")} Successfully registered commands. Took ${colors.green((Date.now() - start) / 1000)} seconds.`);
 		} catch (error) {
 			console.error(error);
@@ -59,7 +61,7 @@ client.on("interactionCreate", async (interaction) => {
 			});
 			let server = interaction.options.getString("server");
 			if (server == "all") {
-				servers = config.servers;
+				let servers = config.servers;
 				let reply = "```\n";
 				for (let i = 0; i < servers.length; i++) {
 					await exec(`net stop ${servers[i].value}`, async (error, stdout, stderr) => {
