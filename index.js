@@ -64,6 +64,7 @@ client.on("interactionCreate", async (interaction) => {
 				let servers = config.servers;
 				let reply = "```\n";
 				for (let i = 0; i < servers.length; i++) {
+					if (servers[i].value == "all") continue;
 					await exec(`net stop ${servers[i].value}`, async (error, stdout, stderr) => {
 						reply += `Successfully stopped ${servers[i].value}.\n`;
 						interaction.editReply({
