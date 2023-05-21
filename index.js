@@ -68,7 +68,7 @@ client.on("interactionCreate", async (interaction) => {
 							content: reply,
 							ephemeral: true
 						});
-						exec(`net start ${servers[i].value}`, (error, stdout, stderr) => {
+						await exec(`net start ${servers[i].value}`, (error, stdout, stderr) => {
 							reply += `Successfully started ${servers[i].value}.\n`;
 							interaction.editReply({
 								content: reply,
