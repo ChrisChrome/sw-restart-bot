@@ -18,18 +18,6 @@ client.on("ready", async () => {
 		try {
 			console.log(`${colors.cyan("[INFO]")} Registering Commands...`)
 			let start = Date.now()
-			// For every guild
-			for (const guild of client.guilds.cache.values()) {
-				let gStart = Date.now();
-				console.log(`${colors.cyan("[INFO]")} Registering Commands for ${colors.green(guild.name)}...`);
-				// Register commands
-				await rest.put(
-					Discord.Routes.applicationGuildCommands(client.user.id, guild.id), {
-						body: []
-					},
-				);
-				console.log(`${colors.cyan("[INFO]")} Successfully registered commands for ${colors.green(guild.name)}. Took ${colors.green((Date.now() - gStart) / 1000)} seconds.`);
-			};
 			await rest.put(
 				Discord.Routes.applicationCommands(client.user.id), {
 					body: [{
