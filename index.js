@@ -54,7 +54,7 @@ client.on("interactionCreate", async (interaction) => {
 	if (!interaction.isCommand()) return;
 	switch (interaction.commandName) {
 		case "restart":
-			interaction.deferReply({
+			await interaction.deferReply({
 				ephemeral: true
 			});
 			let server = interaction.options.getString("server");
