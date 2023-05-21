@@ -1,0 +1,11 @@
+{
+	"discord": {
+		"token": "yourtokenhere"
+	},
+	"servers": [
+		{
+			"name": "Server 1",
+			"value": "server1service"
+		}
+	]
+}
